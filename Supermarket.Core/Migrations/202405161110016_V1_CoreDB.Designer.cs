@@ -13,7 +13,7 @@ namespace Supermarket.Core.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202405160954463_V1_CoreDB"; }
+            get { return "202405161110016_V1_CoreDB"; }
         }
         
         string IMigrationMetadata.Source

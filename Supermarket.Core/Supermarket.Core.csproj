@@ -74,6 +74,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Context\SupermarketDbContext.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Manufacturer.cs" />
+    <Compile Include="Entities\Offer.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Receipt.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\SoldProduct.cs" />
+    <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -81,9 +89,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202405160954463_V1_CoreDB.cs" />
-    <Compile Include="Migrations\202405160954463_V1_CoreDB.Designer.cs">
-      <DependentUpon>202405160954463_V1_CoreDB.cs</DependentUpon>
+    <Compile Include="Migrations\202405161110016_V1_CoreDB.cs" />
+    <Compile Include="Migrations\202405161110016_V1_CoreDB.Designer.cs">
+      <DependentUpon>202405161110016_V1_CoreDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -99,8 +107,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405160954463_V1_CoreDB.resx">
-      <DependentUpon>202405160954463_V1_CoreDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405161110016_V1_CoreDB.resx">
+      <DependentUpon>202405161110016_V1_CoreDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
