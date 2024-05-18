@@ -8,6 +8,18 @@
         public override void Up()
         {
             CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Name = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        UpdatedAt = c.DateTime(),
+                        DeletedAt = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Manufacturers",
                 c => new
                     {
@@ -46,14 +58,16 @@
                         Name = c.String(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         BarCode = c.String(),
-                        Category = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
+                        Category_Id = c.Guid(),
                         Manufacturer_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Categories", t => t.Category_Id)
                 .ForeignKey("dbo.Manufacturers", t => t.Manufacturer_Id)
+                .Index(t => t.Category_Id)
                 .Index(t => t.Manufacturer_Id);
             
             CreateTable(
@@ -161,6 +175,7 @@
             DropForeignKey("dbo.Users", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.Offers", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Products", "Manufacturer_Id", "dbo.Manufacturers");
+            DropForeignKey("dbo.Products", "Category_Id", "dbo.Categories");
             DropIndex("dbo.StockReceipts", new[] { "Receipt_Id" });
             DropIndex("dbo.StockReceipts", new[] { "Stock_Id" });
             DropIndex("dbo.SoldProducts", new[] { "Receipt_Id" });
@@ -168,6 +183,7 @@
             DropIndex("dbo.Users", new[] { "Role_Id" });
             DropIndex("dbo.Receipts", new[] { "Issuer_Id" });
             DropIndex("dbo.Products", new[] { "Manufacturer_Id" });
+            DropIndex("dbo.Products", new[] { "Category_Id" });
             DropIndex("dbo.Offers", new[] { "Product_Id" });
             DropTable("dbo.StockReceipts");
             DropTable("dbo.Stocks");
@@ -178,6 +194,7 @@
             DropTable("dbo.Products");
             DropTable("dbo.Offers");
             DropTable("dbo.Manufacturers");
+            DropTable("dbo.Categories");
         }
     }
 }

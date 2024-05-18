@@ -84,6 +84,10 @@
     <Compile Include="Mappings\SoldProductMappingExtensions.cs" />
     <Compile Include="Mappings\StockMappingExtensions.cs" />
     <Compile Include="Mappings\UserMappingExtensions.cs" />
+    <Compile Include="Migrations\202405181201219_V1_CoreDB.cs" />
+    <Compile Include="Migrations\202405181201219_V1_CoreDB.Designer.cs">
+      <DependentUpon>202405181201219_V1_CoreDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
     <Compile Include="Repositories\Interfaces\IManufacturerRepository.cs" />
@@ -144,10 +148,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202405161110016_V1_CoreDB.cs" />
-    <Compile Include="Migrations\202405161110016_V1_CoreDB.Designer.cs">
-      <DependentUpon>202405161110016_V1_CoreDB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -162,8 +162,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405161110016_V1_CoreDB.resx">
-      <DependentUpon>202405161110016_V1_CoreDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405181201219_V1_CoreDB.resx">
+      <DependentUpon>202405181201219_V1_CoreDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

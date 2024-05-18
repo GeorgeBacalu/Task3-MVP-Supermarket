@@ -9,7 +9,7 @@ namespace Supermarket.Core.Dtos
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string BarCode { get; set; }
-        public ProductCategory Category { get; set; }
+        public Guid CategoryId { get; set; }
         public Guid ManufacturerId { get; set; }
     }
 }
