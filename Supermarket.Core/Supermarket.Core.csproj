@@ -65,6 +65,61 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dtos\CategoryDto.cs" />
+    <Compile Include="Dtos\ManufacturerDto.cs" />
+    <Compile Include="Dtos\OfferDto.cs" />
+    <Compile Include="Dtos\ProductDto.cs" />
+    <Compile Include="Dtos\ReceiptDto.cs" />
+    <Compile Include="Dtos\RoleDto.cs" />
+    <Compile Include="Dtos\SoldProductDto.cs" />
+    <Compile Include="Dtos\StockDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Mappings\CategoryMappingExtensions.cs" />
+    <Compile Include="Mappings\ManufacturerMappingExtensions.cs" />
+    <Compile Include="Mappings\OfferMappingExtensions.cs" />
+    <Compile Include="Mappings\ProductMappingExtensions.cs" />
+    <Compile Include="Mappings\ReceiptMappingExtensions.cs" />
+    <Compile Include="Mappings\RoleMappingExtensions.cs" />
+    <Compile Include="Mappings\SoldProductMappingExtensions.cs" />
+    <Compile Include="Mappings\StockMappingExtensions.cs" />
+    <Compile Include="Mappings\UserMappingExtensions.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IManufacturerRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IOfferRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProductRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IReceiptRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISoldProductRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IStockRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\ManufacturerRepository.cs" />
+    <Compile Include="Repositories\OfferRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ReceiptRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\SoldProductRepository.cs" />
+    <Compile Include="Repositories\StockRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\Interfaces\ICategoryService.cs" />
+    <Compile Include="Services\Interfaces\IManufacturerService.cs" />
+    <Compile Include="Services\Interfaces\IOfferService.cs" />
+    <Compile Include="Services\Interfaces\IProductService.cs" />
+    <Compile Include="Services\Interfaces\IReceiptService.cs" />
+    <Compile Include="Services\Interfaces\IRoleService.cs" />
+    <Compile Include="Services\Interfaces\ISoldProductService.cs" />
+    <Compile Include="Services\Interfaces\IStockService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\ManufacturerService.cs" />
+    <Compile Include="Services\OfferService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ReceiptService.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\SoldProductService.cs" />
+    <Compile Include="Services\StockService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +178,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
