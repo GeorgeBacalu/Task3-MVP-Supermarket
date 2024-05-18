@@ -12,7 +12,7 @@ namespace Supermarket.Core.Mappings
 
         public static IList<Offer> ToEntities(this IList<OfferDto> offerDtos, IProductRepository productRepository) => offerDtos.Select(offerDto => offerDto.ToEntity(productRepository)).ToList();
 
-        public static OfferDto ToDto(this Offer offer) => new OfferDto
+        public static OfferDto ToDto(this Offer offer) => offer == null ? null : new OfferDto
         {
             Id = offer.Id,
             Reason = offer.Reason,
@@ -25,7 +25,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = offer.DeletedAt
         };
 
-        public static Offer ToEntity(this OfferDto offerDto, IProductRepository productRepository) => new Offer
+        public static Offer ToEntity(this OfferDto offerDto, IProductRepository productRepository) => offerDto == null ? null : new Offer
         {
             Id = offerDto.Id,
             Reason = offerDto.Reason,

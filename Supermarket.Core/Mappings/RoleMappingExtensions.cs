@@ -11,7 +11,7 @@ namespace Supermarket.Core.Mappings
 
         public static IList<Role> ToEntities(this IList<RoleDto> roleDtos) => roleDtos.Select(roleDto => roleDto.ToEntity()).ToList();
 
-        public static RoleDto ToDto(this Role role) => new RoleDto
+        public static RoleDto ToDto(this Role role) => role == null ? null : new RoleDto
         {
             Id = role.Id,
             Type = role.Type,
@@ -20,7 +20,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = role.DeletedAt
         };
 
-        public static Role ToEntity(this RoleDto roleDto) => new Role
+        public static Role ToEntity(this RoleDto roleDto) => roleDto == null ? null : new Role
         {
             Id = roleDto.Id,
             Type = roleDto.Type,

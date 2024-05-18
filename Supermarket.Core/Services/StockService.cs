@@ -1,5 +1,4 @@
 ﻿using Supermarket.Core.Dtos;
-using Supermarket.Core.Entities;
 using Supermarket.Core.Mappings;
 using Supermarket.Core.Repositories.Interfaces;
 using Supermarket.Core.Services.Interfaces;
@@ -21,12 +20,7 @@ namespace Supermarket.Core.Services
 
         public StockDto Add(StockDto stockDto) => _stockRepository.Add(stockDto.ToEntity(_productRepository)).ToDto();
 
-        public StockDto UpdateById(StockDto stockDto, Guid id)
-        {
-            Stock updatedStock = _stockRepository.UpdateById(stockDto.ToEntity(_productRepository), id);
-            updatedStock.Product = _productRepository.GetById(stockDto.ProductId);
-            return updatedStock.ToDto();
-        }
+        public StockDto UpdateById(StockDto stockDto, Guid id) => _stockRepository.UpdateById(stockDto.ToEntity(_productRepository), id).ToDto();
 
         public StockDto DeleteById(Guid id) => _stockRepository.DeleteById(id).ToDto();
     }

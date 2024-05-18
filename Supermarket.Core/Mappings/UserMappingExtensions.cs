@@ -12,7 +12,7 @@ namespace Supermarket.Core.Mappings
 
         public static IList<User> ToEntities(this IList<UserDto> userDtos, IRoleRepository roleRepository) => userDtos.Select(userDto => userDto.ToEntity(roleRepository)).ToList();
 
-        public static UserDto ToDto(this User user) => new UserDto
+        public static UserDto ToDto(this User user) => user == null ? null : new UserDto
         {
             Id = user.Id,
             Name = user.Name,
@@ -23,7 +23,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = user.DeletedAt
         };
 
-        public static User ToEntity(this UserDto userDto, IRoleRepository roleRepository) => new User
+        public static User ToEntity(this UserDto userDto, IRoleRepository roleRepository) => userDto == null ? null : new User
         {
             Id = userDto.Id,
             Name = userDto.Name,

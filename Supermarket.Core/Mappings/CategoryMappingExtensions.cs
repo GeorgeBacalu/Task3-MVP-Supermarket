@@ -9,9 +9,9 @@ namespace Supermarket.Core.Mappings
     {
         public static IList<CategoryDto> ToDtos(this IList<Category> categories) => categories.Select(category => category.ToDto()).ToList();
 
-        public static IList<Category> ToEntity(this IList<CategoryDto> categoryDtos) => categoryDtos.Select(categoryDto => categoryDto.ToEntity()).ToList();
+        public static IList<Category> ToEntities(this IList<CategoryDto> categoryDtos) => categoryDtos.Select(categoryDto => categoryDto.ToEntity()).ToList();
 
-        public static CategoryDto ToDto(this Category category) => new CategoryDto
+        public static CategoryDto ToDto(this Category category) => category == null ? null : new CategoryDto
         {
             Id = category.Id,
             Name = category.Name,
@@ -20,7 +20,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = category.DeletedAt
         };
 
-        public static Category ToEntity(this CategoryDto categoryDto) => new Category
+        public static Category ToEntity(this CategoryDto categoryDto) => categoryDto == null ? null : new Category
         {
             Id = categoryDto.Id,
             Name = categoryDto.Name,

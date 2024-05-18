@@ -13,7 +13,7 @@ namespace Supermarket.Core.Mappings
         public static IList<Product> ToEntites(this IList<ProductDto> productDtos, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository, IStockRepository stockRepository) => 
             productDtos.Select(productDto => productDto.ToEntity(categoryRepository, manufacturerRepository, stockRepository)).ToList();
 
-        public static ProductDto ToDto(this Product product) => new ProductDto
+        public static ProductDto ToDto(this Product product) => product == null ? null : new ProductDto
         {
             Id = product.Id,
             Name = product.Name,
@@ -27,7 +27,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = product.DeletedAt
         };
 
-        public static Product ToEntity(this ProductDto productDto, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository, IStockRepository stockRepository) => new Product
+        public static Product ToEntity(this ProductDto productDto, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository, IStockRepository stockRepository) => productDto == null ? null : new Product
         {
             Id = productDto.Id,
             Name = productDto.Name,

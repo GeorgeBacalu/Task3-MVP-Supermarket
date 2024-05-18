@@ -9,9 +9,9 @@ namespace Supermarket.Core.Mappings
     {
         public static IList<ManufacturerDto> ToDtos(this IList<Manufacturer> manufacturers) => manufacturers.Select(manufacturer => manufacturer.ToDto()).ToList();
 
-        public static IList<Manufacturer> ToEntites(this IList<ManufacturerDto> manufacturerDtos) => manufacturerDtos.Select(manufacturerDto => manufacturerDto.ToEntity()).ToList();
+        public static IList<Manufacturer> ToEntities(this IList<ManufacturerDto> manufacturerDtos) => manufacturerDtos.Select(manufacturerDto => manufacturerDto.ToEntity()).ToList();
 
-        public static ManufacturerDto ToDto(this Manufacturer manufacturer) => new ManufacturerDto
+        public static ManufacturerDto ToDto(this Manufacturer manufacturer) => manufacturer == null ? null : new ManufacturerDto
         {
             Id = manufacturer.Id,
             Name = manufacturer.Name,
@@ -21,7 +21,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = manufacturer.DeletedAt
         };
 
-        public static Manufacturer ToEntity(this ManufacturerDto manufacturerDto) => new Manufacturer
+        public static Manufacturer ToEntity(this ManufacturerDto manufacturerDto) => manufacturerDto == null ? null : new Manufacturer
         {
             Id = manufacturerDto.Id,
             Name = manufacturerDto.Name,

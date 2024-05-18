@@ -1,5 +1,4 @@
 ﻿using Supermarket.Core.Dtos;
-using Supermarket.Core.Entities;
 using Supermarket.Core.Mappings;
 using Supermarket.Core.Repositories.Interfaces;
 using Supermarket.Core.Services.Interfaces;
@@ -21,12 +20,7 @@ namespace Supermarket.Core.Services
 
         public UserDto Add(UserDto userDto) => _userRepository.Add(userDto.ToEntity(_roleRepository)).ToDto();
 
-        public UserDto UpdateById(UserDto userDto, Guid id)
-        {
-            User updatedUser = _userRepository.UpdateById(userDto.ToEntity(_roleRepository), id);
-            updatedUser.Role = _roleRepository.GetById(userDto.RoleId);
-            return updatedUser.ToDto();
-        }
+        public UserDto UpdateById(UserDto userDto, Guid id) => _userRepository.UpdateById(userDto.ToEntity(_roleRepository), id).ToDto();
 
         public UserDto DeleteById(Guid id) => _userRepository.DeleteById(id).ToDto();
     }

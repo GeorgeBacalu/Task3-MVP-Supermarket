@@ -13,7 +13,7 @@ namespace Supermarket.Core.Mappings
         public static IList<Receipt> ToEntities(this IList<ReceiptDto> receiptDtos, IUserRepository userRepository, ISoldProductRepository soldProductRepository)
             => receiptDtos.Select(receiptDto => receiptDto.ToEntity(userRepository, soldProductRepository)).ToList();
 
-        public static ReceiptDto ToDto(this Receipt receipt) => new ReceiptDto
+        public static ReceiptDto ToDto(this Receipt receipt) => receipt == null ? null : new ReceiptDto
         {
             Id = receipt.Id,
             IssuedAt = receipt.IssuedAt,
@@ -25,7 +25,7 @@ namespace Supermarket.Core.Mappings
             DeletedAt = receipt.DeletedAt
         };
 
-        public static Receipt ToEntity(this ReceiptDto receiptDto, IUserRepository userRepository, ISoldProductRepository soldProductRepository) => new Receipt
+        public static Receipt ToEntity(this ReceiptDto receiptDto, IUserRepository userRepository, ISoldProductRepository soldProductRepository) => receiptDto == null ? null : new Receipt
         {
             Id = receiptDto.Id,
             IssuedAt = receiptDto.IssuedAt,
