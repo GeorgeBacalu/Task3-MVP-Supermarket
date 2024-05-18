@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Supermarket.Core.Entities
 {
@@ -10,5 +11,6 @@ namespace Supermarket.Core.Entities
         public string BarCode { get; set; }
         public Category Category { get; set; }
         public Manufacturer Manufacturer { get; set; }
+        public IList<Stock> Stocks { get; set; }
     }
 }

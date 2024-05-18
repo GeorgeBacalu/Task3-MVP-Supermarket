@@ -15,11 +15,15 @@ namespace Supermarket.Core.Repositories
         public ReceiptRepository(SupermarketDbContext context) => _context = context;
 
         public IList<Receipt> GetAll() => _context.Receipts
+            .Include(receipt => receipt.Issuer)
+            .Include(receipt => receipt.SoldProducts)
             .Where(receipt => receipt.DeletedAt == null)
             .OrderBy(receipt => receipt.CreatedAt)
             .ToList();
 
         public Receipt GetById(Guid id) => _context.Receipts
+            .Include(receipt => receipt.Issuer)
+            .Include(receipt => receipt.SoldProducts)
             .Where(receipt => receipt.DeletedAt == null)
             .FirstOrDefault(receipt => receipt.Id == id)
             ?? throw new Exception($"Receipt with id {id} not found");

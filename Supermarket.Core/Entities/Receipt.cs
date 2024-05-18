@@ -10,6 +10,5 @@ namespace Supermarket.Core.Entities
         public User Issuer { get; set; }
         public IList<SoldProduct> SoldProducts { get; set; }
         public decimal Total { get; set; }
-        public IList<Stock> Stocks { get; set; }
     }
 }

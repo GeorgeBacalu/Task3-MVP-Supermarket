@@ -15,11 +15,13 @@ namespace Supermarket.Core.Repositories
         public OfferRepository(SupermarketDbContext context) => _context = context;
 
         public IList<Offer> GetAll() => _context.Offers
+            .Include(offer => offer.Product)
             .Where(offer => offer.DeletedAt == null)
             .OrderBy(offer => offer.CreatedAt)
             .ToList();
 
         public Offer GetById(Guid id) => _context.Offers
+            .Include(offer => offer.Product)
             .Where(offer => offer.DeletedAt == null)
             .FirstOrDefault(offer => offer.Id == id)
             ?? throw new Exception($"Offer with id {id} not found");

@@ -15,11 +15,13 @@ namespace Supermarket.Core.Repositories
         public StockRepository(SupermarketDbContext context) => _context = context;
 
         public IList<Stock> GetAll() => _context.Stocks
+            .Include(stock => stock.Product)
             .Where(stock => stock.DeletedAt == null)
             .OrderBy(stock => stock.CreatedAt)
             .ToList();
 
         public Stock GetById(Guid id) => _context.Stocks
+            .Include(stock => stock.Product)
             .Where(stock => stock.DeletedAt == null)
             .FirstOrDefault(stock => stock.Id == id)
             ?? throw new Exception($"Stock with id {id} not found");

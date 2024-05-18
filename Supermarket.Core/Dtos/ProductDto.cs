@@ -1,5 +1,6 @@
 ﻿using Supermarket.Core.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Supermarket.Core.Dtos
 {
@@ -11,5 +12,6 @@ namespace Supermarket.Core.Dtos
         public string BarCode { get; set; }
         public Guid CategoryId { get; set; }
         public Guid ManufacturerId { get; set; }
+        public List<Guid> StocksIds { get; set; }
     }
 }

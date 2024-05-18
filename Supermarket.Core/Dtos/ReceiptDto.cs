@@ -11,6 +11,5 @@ namespace Supermarket.Core.Dtos
         public Guid IssuerId { get; set; }
         public IList<Guid> SoldProductsIds { get; set; }
         public decimal Total { get; set; }
-        public IList<Guid> StocksIds { get; set; }
     }
 }

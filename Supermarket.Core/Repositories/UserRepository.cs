@@ -15,11 +15,13 @@ namespace Supermarket.Core.Repositories
         public UserRepository(SupermarketDbContext context) => _context = context;
 
         public IList<User> GetAll() => _context.Users
+            .Include(user => user.Role)
             .Where(user => user.DeletedAt == null)
             .OrderBy(user => user.CreatedAt)
             .ToList();
 
         public User GetById(Guid id) => _context.Users
+            .Include(user => user.Role)
             .Where(user => user.DeletedAt == null)
             .FirstOrDefault(user => user.Id == id)
             ?? throw new Exception($"User with id {id} not found");

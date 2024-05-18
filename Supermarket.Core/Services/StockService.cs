@@ -5,27 +5,26 @@ using Supermarket.Core.Repositories.Interfaces;
 using Supermarket.Core.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Supermarket.Core.Services
 {
     public class StockService : IStockService
     {
         private readonly IStockRepository _stockRepository;
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IProductRepository _productRepository;
 
-        public StockService(IStockRepository stockRepository, IReceiptRepository receiptRepository) => (_stockRepository, _receiptRepository) = (stockRepository, receiptRepository);
+        public StockService(IStockRepository stockRepository, IProductRepository productRepository) => (_stockRepository, _productRepository) = (stockRepository, productRepository);
 
         public IList<StockDto> GetAll() => _stockRepository.GetAll().ToDtos();
 
         public StockDto GetById(Guid id) => _stockRepository.GetById(id).ToDto();
 
-        public StockDto Add(StockDto stockDto) => _stockRepository.Add(stockDto.ToEntity(_receiptRepository)).ToDto();
+        public StockDto Add(StockDto stockDto) => _stockRepository.Add(stockDto.ToEntity(_productRepository)).ToDto();
 
         public StockDto UpdateById(StockDto stockDto, Guid id)
         {
-            Stock updatedStock = _stockRepository.UpdateById(stockDto.ToEntity(_receiptRepository), id);
-            updatedStock.Receipts = stockDto.ReceiptsIds.Select(_receiptRepository.GetById).ToList();
+            Stock updatedStock = _stockRepository.UpdateById(stockDto.ToEntity(_productRepository), id);
+            updatedStock.Product = _productRepository.GetById(stockDto.ProductId);
             return updatedStock.ToDto();
         }
 

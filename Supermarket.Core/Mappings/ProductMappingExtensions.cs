@@ -10,8 +10,8 @@ namespace Supermarket.Core.Mappings
     {
         public static IList<ProductDto> ToDtos(this IList<Product> products) => products.Select(product => product.ToDto()).ToList();
 
-        public static IList<Product> ToEntites(this IList<ProductDto> productDtos, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository) => 
-            productDtos.Select(productDto => productDto.ToEntity(categoryRepository, manufacturerRepository)).ToList();
+        public static IList<Product> ToEntites(this IList<ProductDto> productDtos, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository, IStockRepository stockRepository) => 
+            productDtos.Select(productDto => productDto.ToEntity(categoryRepository, manufacturerRepository, stockRepository)).ToList();
 
         public static ProductDto ToDto(this Product product) => new ProductDto
         {
@@ -21,12 +21,13 @@ namespace Supermarket.Core.Mappings
             BarCode = product.BarCode,
             CategoryId = product.Category.Id,
             ManufacturerId = product.Manufacturer.Id,
+            StocksIds = product.Stocks.Select(stock => stock.Id).ToList(),
             CreatedAt = product.CreatedAt,
             UpdatedAt = product.UpdatedAt,
             DeletedAt = product.DeletedAt
         };
 
-        public static Product ToEntity(this ProductDto productDto, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository) => new Product
+        public static Product ToEntity(this ProductDto productDto, ICategoryRepository categoryRepository, IManufacturerRepository manufacturerRepository, IStockRepository stockRepository) => new Product
         {
             Id = productDto.Id,
             Name = productDto.Name,
@@ -34,6 +35,7 @@ namespace Supermarket.Core.Mappings
             BarCode = productDto.BarCode,
             Category = categoryRepository.GetById(productDto.CategoryId),
             Manufacturer = manufacturerRepository.GetById(productDto.ManufacturerId),
+            Stocks = productDto.StocksIds.Select(stockRepository.GetById).ToList(),
             CreatedAt = productDto.CreatedAt,
             UpdatedAt = productDto.UpdatedAt,
             DeletedAt = productDto.DeletedAt

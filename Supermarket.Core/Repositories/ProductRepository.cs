@@ -15,11 +15,17 @@ namespace Supermarket.Core.Repositories
         public ProductRepository(SupermarketDbContext context) => _context = context;
 
         public IList<Product> GetAll() => _context.Products
+            .Include(product => product.Category)
+            .Include(product => product.Manufacturer)
+            .Include(product => product.Stocks)
             .Where(product => product.DeletedAt == null)
             .OrderBy(product => product.CreatedAt)
             .ToList();
 
         public Product GetById(Guid id) => _context.Products
+            .Include(product => product.Category)
+            .Include(product => product.Manufacturer)
+            .Include(product => product.Stocks)
             .Where(product => product.DeletedAt == null)
             .FirstOrDefault(product => product.Id == id)
             ?? throw new Exception($"Product with id {id} not found");
@@ -38,7 +44,6 @@ namespace Supermarket.Core.Repositories
             productToUpdate.Name = product.Name;
             productToUpdate.Price = product.Price;
             productToUpdate.BarCode = product.BarCode;
-            productToUpdate.Category = product.Category;
             if (_context.Entry(productToUpdate).State == EntityState.Modified)
                 productToUpdate.UpdatedAt = DateTime.Now;
             _context.SaveChanges();
