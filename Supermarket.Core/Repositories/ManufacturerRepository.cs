@@ -26,6 +26,7 @@ namespace Supermarket.Core.Repositories
 
         public Manufacturer Add(Manufacturer manufacturer)
         {
+            if (manufacturer.Id == Guid.Empty) manufacturer.Id = Guid.NewGuid();
             manufacturer.CreatedAt = DateTime.Now;
             _context.Manufacturers.Add(manufacturer);
             _context.SaveChanges();

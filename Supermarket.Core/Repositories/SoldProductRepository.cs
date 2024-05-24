@@ -28,6 +28,7 @@ namespace Supermarket.Core.Repositories
 
         public SoldProduct Add(SoldProduct soldProduct)
         {
+            if (soldProduct.Id == Guid.Empty) soldProduct.Id = Guid.NewGuid();
             soldProduct.CreatedAt = DateTime.Now;
             _context.SoldProducts.Add(soldProduct);
             _context.SaveChanges();

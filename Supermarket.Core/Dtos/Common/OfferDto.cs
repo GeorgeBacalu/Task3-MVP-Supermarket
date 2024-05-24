@@ -1,7 +1,7 @@
 ﻿using Supermarket.Core.Entities;
 using System;
 
-namespace Supermarket.Core.Dtos
+namespace Supermarket.Core.Dtos.Common
 {
     public class OfferDto : BaseEntity
     {

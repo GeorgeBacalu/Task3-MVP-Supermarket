@@ -1,4 +1,4 @@
-﻿using Supermarket.Core.Dtos;
+﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Entities;
 using System.Collections.Generic;
 using System.Linq;

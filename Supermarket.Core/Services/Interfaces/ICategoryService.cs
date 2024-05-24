@@ -1,4 +1,4 @@
-﻿using Supermarket.Core.Dtos;
+﻿using Supermarket.Core.Dtos.Common;
 using System;
 using System.Collections.Generic;
 

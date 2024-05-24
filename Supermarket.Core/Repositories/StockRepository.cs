@@ -28,6 +28,7 @@ namespace Supermarket.Core.Repositories
 
         public Stock Add(Stock stock)
         {
+            if (stock.Id == Guid.Empty) stock.Id = Guid.NewGuid();
             stock.CreatedAt = DateTime.Now;
             _context.Stocks.Add(stock);
             _context.SaveChanges();

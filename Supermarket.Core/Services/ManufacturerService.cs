@@ -1,4 +1,4 @@
-﻿using Supermarket.Core.Dtos;
+﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Mappings;
 using Supermarket.Core.Repositories.Interfaces;
 using Supermarket.Core.Services.Interfaces;

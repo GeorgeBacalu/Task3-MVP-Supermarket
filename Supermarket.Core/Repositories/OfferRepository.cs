@@ -28,6 +28,7 @@ namespace Supermarket.Core.Repositories
 
         public Offer Add(Offer offer)
         {
+            if (offer.Id == Guid.Empty) offer.Id = Guid.NewGuid();
             offer.CreatedAt = DateTime.Now;
             _context.Offers.Add(offer);
             _context.SaveChanges();

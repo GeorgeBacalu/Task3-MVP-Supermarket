@@ -1,4 +1,4 @@
-﻿using Supermarket.Core.Dtos;
+﻿using Supermarket.Core.Dtos.Common;
 using System.Collections.Generic;
 
 namespace Supermarket.Core.Services.Interfaces

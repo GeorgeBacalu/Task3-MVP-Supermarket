@@ -1,6 +1,6 @@
 ﻿using Supermarket.Core.Entities;
 
-namespace Supermarket.Core.Dtos
+namespace Supermarket.Core.Dtos.Common
 {
     public class RoleDto : BaseEntity
     {

@@ -30,6 +30,7 @@ namespace Supermarket.Core.Repositories
 
         public Receipt Add(Receipt receipt)
         {
+            if (receipt.Id == Guid.Empty) receipt.Id = Guid.NewGuid();
             receipt.CreatedAt = DateTime.Now;
             _context.Receipts.Add(receipt);
             _context.SaveChanges();

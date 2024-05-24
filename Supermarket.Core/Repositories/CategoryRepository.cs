@@ -26,6 +26,7 @@ namespace Supermarket.Core.Repositories
 
         public Category Add(Category category)
         {
+            if (category.Id == Guid.Empty) category.Id = Guid.NewGuid();
             category.CreatedAt = DateTime.Now;
             _context.Categories.Add(category);
             _context.SaveChanges();

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supermarket.Core.Dtos
+namespace Supermarket.Core.Dtos.Common
 {
     public class ProductDto : BaseEntity
     {
