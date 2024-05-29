@@ -26,8 +26,15 @@ namespace Supermarket.Core.Repositories
             .FirstOrDefault(user => user.Id == id)
             ?? throw new Exception($"User with id {id} not found");
 
+        public User GetByEmail(string email) => _context.Users
+            .Include(user => user.Role)
+            .Where(user => user.DeletedAt == null)
+            .FirstOrDefault(user => user.Email == email)
+            ?? throw new Exception($"User with email {email} not found");
+
         public User Add(User user)
         {
+            if (user.Id == Guid.Empty) user.Id = Guid.NewGuid();
             user.CreatedAt = DateTime.Now;
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -38,7 +45,10 @@ namespace Supermarket.Core.Repositories
         {
             User userToUpdate = GetById(id);
             userToUpdate.Name = user.Name;
-            userToUpdate.Password = user.Password;
+            userToUpdate.Email = user.Email;
+            userToUpdate.Role = user.Role;
+            userToUpdate.PasswordHash = user.PasswordHash;
+            userToUpdate.PasswordSalt = user.PasswordSalt;
             if (_context.Entry(userToUpdate).State == EntityState.Modified)
                 userToUpdate.UpdatedAt = DateTime.Now;
             _context.SaveChanges();

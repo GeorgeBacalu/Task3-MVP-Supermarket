@@ -12,7 +12,7 @@
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Name = c.Int(nullable: false),
+                        Name = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -71,6 +71,27 @@
                 .Index(t => t.Manufacturer_Id);
             
             CreateTable(
+                "dbo.Stocks",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        MeasureUnit = c.Int(nullable: false),
+                        SuppliedAt = c.DateTime(nullable: false),
+                        ExpiresAt = c.DateTime(nullable: false),
+                        PurchasePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SalePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        TradeMarkup = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        CreatedAt = c.DateTime(),
+                        UpdatedAt = c.DateTime(),
+                        DeletedAt = c.DateTime(),
+                        Product_Id = c.Guid(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Products", t => t.Product_Id)
+                .Index(t => t.Product_Id);
+            
+            CreateTable(
                 "dbo.Receipts",
                 c => new
                     {
@@ -92,7 +113,9 @@
                     {
                         Id = c.Guid(nullable: false),
                         Name = c.String(),
-                        Password = c.String(),
+                        Email = c.String(),
+                        PasswordHash = c.String(),
+                        PasswordSalt = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedAt = c.DateTime(),
                         DeletedAt = c.DateTime(),
@@ -133,64 +156,31 @@
                 .Index(t => t.Product_Id)
                 .Index(t => t.Receipt_Id);
             
-            CreateTable(
-                "dbo.Stocks",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false),
-                        Quantity = c.Int(nullable: false),
-                        MeasureUnit = c.Int(nullable: false),
-                        SuppliedAt = c.DateTime(nullable: false),
-                        ExpiresAt = c.DateTime(nullable: false),
-                        PurchasePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        SalePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        CreatedAt = c.DateTime(),
-                        UpdatedAt = c.DateTime(),
-                        DeletedAt = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.StockReceipts",
-                c => new
-                    {
-                        Stock_Id = c.Guid(nullable: false),
-                        Receipt_Id = c.Guid(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Stock_Id, t.Receipt_Id })
-                .ForeignKey("dbo.Stocks", t => t.Stock_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Receipts", t => t.Receipt_Id, cascadeDelete: true)
-                .Index(t => t.Stock_Id)
-                .Index(t => t.Receipt_Id);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.StockReceipts", "Receipt_Id", "dbo.Receipts");
-            DropForeignKey("dbo.StockReceipts", "Stock_Id", "dbo.Stocks");
             DropForeignKey("dbo.SoldProducts", "Receipt_Id", "dbo.Receipts");
             DropForeignKey("dbo.SoldProducts", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Receipts", "Issuer_Id", "dbo.Users");
             DropForeignKey("dbo.Users", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.Offers", "Product_Id", "dbo.Products");
+            DropForeignKey("dbo.Stocks", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Products", "Manufacturer_Id", "dbo.Manufacturers");
             DropForeignKey("dbo.Products", "Category_Id", "dbo.Categories");
-            DropIndex("dbo.StockReceipts", new[] { "Receipt_Id" });
-            DropIndex("dbo.StockReceipts", new[] { "Stock_Id" });
             DropIndex("dbo.SoldProducts", new[] { "Receipt_Id" });
             DropIndex("dbo.SoldProducts", new[] { "Product_Id" });
             DropIndex("dbo.Users", new[] { "Role_Id" });
             DropIndex("dbo.Receipts", new[] { "Issuer_Id" });
+            DropIndex("dbo.Stocks", new[] { "Product_Id" });
             DropIndex("dbo.Products", new[] { "Manufacturer_Id" });
             DropIndex("dbo.Products", new[] { "Category_Id" });
             DropIndex("dbo.Offers", new[] { "Product_Id" });
-            DropTable("dbo.StockReceipts");
-            DropTable("dbo.Stocks");
             DropTable("dbo.SoldProducts");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.Receipts");
+            DropTable("dbo.Stocks");
             DropTable("dbo.Products");
             DropTable("dbo.Offers");
             DropTable("dbo.Manufacturers");

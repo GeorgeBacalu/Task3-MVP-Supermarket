@@ -10,8 +10,8 @@ namespace Supermarket.Core.Mappings
     {
         public static IList<ReceiptDto> ToDtos(this IList<Receipt> receipts) => receipts.Select(receipt => receipt.ToDto()).ToList();
 
-        public static IList<Receipt> ToEntities(this IList<ReceiptDto> receiptDtos, IUserRepository userRepository, ISoldProductRepository soldProductRepository)
-            => receiptDtos.Select(receiptDto => receiptDto.ToEntity(userRepository, soldProductRepository)).ToList();
+        public static IList<Receipt> ToEntities(this IList<ReceiptDto> receiptDtos, IUserRepository userRepository, ISoldProductRepository soldProductRepository) => 
+            receiptDtos.Select(receiptDto => receiptDto.ToEntity(userRepository, soldProductRepository)).ToList();
 
         public static ReceiptDto ToDto(this Receipt receipt) => receipt == null ? null : new ReceiptDto
         {

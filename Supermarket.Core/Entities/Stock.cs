@@ -12,6 +12,7 @@ namespace Supermarket.Core.Entities
         public DateTime ExpiresAt { get; set; }
         public decimal PurchasePrice { get; set; }
         public decimal SalePrice { get; set; }
+        public decimal TradeMarkup { get; set; }
     }
 
     public enum MeasureUnit { Piece, Kilogram, Gram, Liter, Milliliter, Other }

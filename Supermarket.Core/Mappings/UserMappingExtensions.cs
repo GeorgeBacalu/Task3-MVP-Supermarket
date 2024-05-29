@@ -1,4 +1,4 @@
-﻿using Supermarket.Core.Dtos;
+﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Entities;
 using Supermarket.Core.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -16,7 +16,9 @@ namespace Supermarket.Core.Mappings
         {
             Id = user.Id,
             Name = user.Name,
-            Password = user.Password,
+            Email = user.Email,
+            PasswordHash = user.PasswordHash,
+            PasswordSalt = user.PasswordSalt,
             RoleId = user.Role.Id,
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt,
@@ -27,7 +29,9 @@ namespace Supermarket.Core.Mappings
         {
             Id = userDto.Id,
             Name = userDto.Name,
-            Password = userDto.Password,
+            Email = userDto.Email,
+            PasswordHash = userDto.PasswordHash,
+            PasswordSalt = userDto.PasswordSalt,
             Role = roleRepository.GetById(userDto.RoleId),
             CreatedAt = userDto.CreatedAt,
             UpdatedAt = userDto.UpdatedAt,

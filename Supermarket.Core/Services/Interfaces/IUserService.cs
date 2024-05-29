@@ -1,4 +1,5 @@
-﻿using Supermarket.Core.Dtos;
+﻿using Supermarket.Core.Dtos.Common;
+using Supermarket.Core.Dtos.Request;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +11,9 @@ namespace Supermarket.Core.Services.Interfaces
 
         UserDto GetById(Guid id);
 
-        UserDto Add(UserDto userDto);
+        UserDto Register(RegisterRequest payload);
+
+        UserDto Login(LoginRequest payload);
 
         UserDto UpdateById(UserDto userDto, Guid id);
 
