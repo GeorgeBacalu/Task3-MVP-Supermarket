@@ -9,6 +9,8 @@ namespace Supermarket.Core.Services.Interfaces
     {
         IList<UserDto> GetAll();
 
+        IList<UserDto> GetByKey(string key);
+
         UserDto GetById(Guid id);
 
         UserDto Register(RegisterRequest payload);

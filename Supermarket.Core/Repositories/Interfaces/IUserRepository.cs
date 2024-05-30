@@ -8,6 +8,8 @@ namespace Supermarket.Core.Repositories.Interfaces
     {
         IList<User> GetAll();
 
+        IList<User> GetByNameContains(string name);
+
         User GetById(Guid id);
 
         User GetByEmail(string email);

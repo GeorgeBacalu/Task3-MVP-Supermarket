@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Supermarket.Core.Entities;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -8,17 +9,16 @@ namespace Supermarket.Core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || parameter == null) return false;
-            string role = (string)parameter;
-            int roleId = (int)value;
-            return role == "Admin" && roleId == 1 || role == "Cashier" && roleId == 2;
+            if (value == null) return null;
+            RoleType roleType = (RoleType)value;
+            return roleType == RoleType.Admin ? "Admin" : "Cashier";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (parameter == null) return null;
-            string role = (string)parameter;
-            return role == "Admin" ? 1 : 2;
+            if (value == null) return null;
+            bool role = (bool)value;
+            return role == true ? 1 : role == false ? 2 : throw new InvalidOperationException("Invalid role type");
         }
     }
 }

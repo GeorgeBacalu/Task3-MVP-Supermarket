@@ -8,6 +8,8 @@ namespace Supermarket.Core.Repositories.Interfaces
     {
         IList<Manufacturer> GetAll();
 
+        IList<Manufacturer> GetByNameContains(string name);
+
         Manufacturer GetById(Guid id);
 
         Manufacturer Add(Manufacturer manufacturer);

@@ -21,6 +21,13 @@ namespace Supermarket.Core.Repositories
             .OrderBy(receipt => receipt.CreatedAt)
             .ToList();
 
+        public IList<Receipt> GetByIssuerNameContains(string name) => _context.Receipts
+            .Include(receipt => receipt.Issuer)
+            .Include(receipt => receipt.SoldProducts)
+            .Where(receipt => receipt.DeletedAt == null && receipt.Issuer.Name.Contains(name))
+            .OrderBy(receipt => receipt.CreatedAt)
+            .ToList();
+
         public Receipt GetById(Guid id) => _context.Receipts
             .Include(receipt => receipt.Issuer)
             .Include(receipt => receipt.SoldProducts)

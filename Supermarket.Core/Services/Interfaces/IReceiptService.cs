@@ -8,6 +8,8 @@ namespace Supermarket.Core.Services.Interfaces
     {
         IList<ReceiptDto> GetAll();
 
+        IList<ReceiptDto> GetByKey(string key);
+
         ReceiptDto GetById(Guid id);
 
         ReceiptDto Add(ReceiptDto receiptDto);

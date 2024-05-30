@@ -5,7 +5,7 @@ namespace Supermarket.Core.Views.Auth
 {
     public partial class RegisterView : Window
     {
-        public RegisterView(AuthVM viewModel)
+        public RegisterView(MainVM viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

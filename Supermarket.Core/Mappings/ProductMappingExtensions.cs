@@ -1,6 +1,7 @@
 ﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Entities;
 using Supermarket.Core.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,9 +20,9 @@ namespace Supermarket.Core.Mappings
             Name = product.Name,
             Price = product.Price,
             BarCode = product.BarCode,
-            CategoryId = product.Category.Id,
-            ManufacturerId = product.Manufacturer.Id,
-            StocksIds = product.Stocks.Select(stock => stock.Id).ToList(),
+            CategoryId = product.Category?.Id ?? Guid.Empty,
+            ManufacturerId = product.Manufacturer?.Id ?? Guid.Empty,
+            StocksIds = product.Stocks?.Select(stock => stock.Id).ToList() ?? new List<Guid>(),
             CreatedAt = product.CreatedAt,
             UpdatedAt = product.UpdatedAt,
             DeletedAt = product.DeletedAt
@@ -33,9 +34,9 @@ namespace Supermarket.Core.Mappings
             Name = productDto.Name,
             Price = productDto.Price,
             BarCode = productDto.BarCode,
-            Category = categoryRepository.GetById(productDto.CategoryId),
-            Manufacturer = manufacturerRepository.GetById(productDto.ManufacturerId),
-            Stocks = productDto.StocksIds.Select(stockRepository.GetById).ToList(),
+            Category = productDto.CategoryId == Guid.Empty ? null : categoryRepository.GetById(productDto.CategoryId),
+            Manufacturer = productDto.ManufacturerId == Guid.Empty ? null : manufacturerRepository.GetById(productDto.ManufacturerId),
+            Stocks = productDto.StocksIds?.Select(stockRepository.GetById).ToList() ?? new List<Stock>(),
             CreatedAt = productDto.CreatedAt,
             UpdatedAt = productDto.UpdatedAt,
             DeletedAt = productDto.DeletedAt

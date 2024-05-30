@@ -20,6 +20,12 @@ namespace Supermarket.Core.Repositories
             .OrderBy(user => user.CreatedAt)
             .ToList();
 
+        public IList<User> GetByNameContains(string name) => _context.Users
+            .Include(user => user.Role)
+            .Where(user => user.DeletedAt == null && user.Name.Contains(name))
+            .OrderBy(user => user.CreatedAt)
+            .ToList();
+
         public User GetById(Guid id) => _context.Users
             .Include(user => user.Role)
             .Where(user => user.DeletedAt == null)

@@ -8,6 +8,8 @@ namespace Supermarket.Core.Repositories.Interfaces
     {
         IList<Stock> GetAll();
 
+        IList<Stock> GetByProductNameContains(string name);
+
         Stock GetById(Guid id);
 
         Stock Add(Stock stock);

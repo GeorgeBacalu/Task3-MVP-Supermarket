@@ -7,6 +7,8 @@ namespace Supermarket.Core.Services.Interfaces
     public interface ICategoryService
     {
         IList<CategoryDto> GetAll();
+
+        IList<CategoryDto> GetByKey(string key);
         
         CategoryDto GetById(Guid id);
         

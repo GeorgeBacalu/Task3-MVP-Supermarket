@@ -1,0 +1,21 @@
+﻿<Window x:Class="Supermarket.Core.Views.Manufacturers.ManufacturerDetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supermarket.Core.Views.Manufacturers"
+        mc:Ignorable="d"
+        Title="ManufacturerDetailsView" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Manufacturer Details" FontSize="20" Margin="0,0,0,20" TextAlignment="Center" />
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Name: " Margin="0,0,0,5" />
+                <TextBlock Text="{Binding ManufacturerDto.Name}" Margin="0,0,0,10" />
+                <TextBlock Text="Origin Country: " Margin="0,0,0,5" />
+                <TextBlock Text="{Binding ManufacturerDto.OriginCountry}" Margin="0,0,0,10" />
+                <Button Content="Back" Command="{Binding BackCommand}" Width="100" HorizontalAlignment="Center" Margin="10" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,6 +1,7 @@
 ﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Entities;
 using Supermarket.Core.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace Supermarket.Core.Mappings
         {
             Id = offer.Id,
             Reason = offer.Reason,
-            ProductId = offer.Product.Id,
+            ProductId = offer?.Product.Id ?? Guid.Empty,
             Discount = offer.Discount,
             StartsAt = offer.StartsAt,
             EndsAt = offer.EndsAt,
@@ -29,7 +30,7 @@ namespace Supermarket.Core.Mappings
         {
             Id = offerDto.Id,
             Reason = offerDto.Reason,
-            Product = productRepository.GetById(offerDto.ProductId),
+            Product = offerDto.ProductId == Guid.Empty ? null : productRepository.GetById(offerDto.ProductId),
             Discount = offerDto.Discount,
             StartsAt = offerDto.StartsAt,
             EndsAt = offerDto.EndsAt,

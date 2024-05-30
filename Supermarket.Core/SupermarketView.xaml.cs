@@ -7,7 +7,7 @@ namespace Supermarket.Core
     {
         public SupermarketView() => InitializeComponent();
 
-        public SupermarketView(AuthVM viewModel) : this()
+        public SupermarketView(MainVM viewModel) : this()
         {
             DataContext = viewModel;
             viewModel.OnClose += () => Close();

@@ -1,6 +1,7 @@
 ﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Entities;
 using Supermarket.Core.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,8 +18,8 @@ namespace Supermarket.Core.Mappings
         {
             Id = receipt.Id,
             IssuedAt = receipt.IssuedAt,
-            IssuerId = receipt.Issuer.Id,
-            SoldProductsIds = receipt.SoldProducts.Select(soldProduct => soldProduct.Id).ToList(),
+            IssuerId = receipt.Issuer?.Id ?? Guid.Empty,
+            SoldProductsIds = receipt.SoldProducts?.Select(soldProduct => soldProduct.Id).ToList() ?? new List<Guid>(),
             Total = receipt.Total,
             CreatedAt = receipt.CreatedAt,
             UpdatedAt = receipt.UpdatedAt,
@@ -29,8 +30,8 @@ namespace Supermarket.Core.Mappings
         {
             Id = receiptDto.Id,
             IssuedAt = receiptDto.IssuedAt,
-            Issuer = userRepository.GetById(receiptDto.IssuerId),
-            SoldProducts = receiptDto.SoldProductsIds.Select(soldProductRepository.GetById).ToList(),
+            Issuer = receiptDto.IssuerId == Guid.Empty ? null : userRepository.GetById(receiptDto.IssuerId),
+            SoldProducts = receiptDto.SoldProductsIds?.Select(soldProductRepository.GetById).ToList() ?? new List<SoldProduct>(),
             Total = receiptDto.Total,
             CreatedAt = receiptDto.CreatedAt,
             UpdatedAt = receiptDto.UpdatedAt,

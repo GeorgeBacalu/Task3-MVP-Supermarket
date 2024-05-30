@@ -8,6 +8,8 @@ namespace Supermarket.Core.Repositories.Interfaces
     {
         IList<Receipt> GetAll();
 
+        IList<Receipt> GetByIssuerNameContains(string name);
+
         Receipt GetById(Guid id);
 
         Receipt Add(Receipt receipt);

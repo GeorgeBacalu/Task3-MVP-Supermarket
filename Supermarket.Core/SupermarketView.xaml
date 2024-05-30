@@ -25,20 +25,20 @@
         </Grid>
         <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,50,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <Button Content="Users" Width="200" Height="50" Margin="0,10,0,10"/>
-                <Button Content="Categories" Width="200" Height="50" Margin="0,10,0,10"/>
-                <Button Content="Offers" Width="200" Height="50" Margin="0,10,0,10"/>
-                <Button Content="Manufacturers" Width="200" Height="50" Margin="0,10,0,10"/>
+                <Button Content="Users" Command="{Binding AccessUsersCommand}" Width="200" Height="50" Margin="0,10,0,10" />
+                <Button Content="Categories" Command="{Binding AccessCategoriesCommand}" Width="200" Height="50" Margin="0,10,0,10" />
+                <Button Content="Manufacturers" Command="{Binding AccessManufacturersCommand}" Width="200" Height="50" Margin="0,10,0,10" />
+                <Button Content="Products" Command="{Binding AccessProductsCommand}" Width="200" Height="50" Margin="0,10,0,10" />
             </StackPanel>
             <StackPanel Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <Button Content="Products" Width="200" Height="50" Margin="0,10,0,10"/>
-                <Button Content="Receipts" Width="200" Height="50" Margin="0,10,0,10"/>
-                <Button Content="Stocks" Width="200" Height="50" Margin="0,10,0,10"/>
+                <Button Content="Offers" Command="{Binding AccessOffersCommand}" Width="200" Height="50" Margin="0,10,0,10" />
+                <Button Content="Stocks" Command="{Binding AccessStocksCommand}" Width="200" Height="50" Margin="0,10,0,10" />
+                <Button Content="Receipts" Command="{Binding AccessReceiptsCommand}" Width="200" Height="50" Margin="0,10,0,10" />
             </StackPanel>
         </Grid>
         <Grid Background="LightGray" Height="30" Grid.Row="2">

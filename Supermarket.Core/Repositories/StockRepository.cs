@@ -20,6 +20,12 @@ namespace Supermarket.Core.Repositories
             .OrderBy(stock => stock.CreatedAt)
             .ToList();
 
+        public IList<Stock> GetByProductNameContains(string name) => _context.Stocks
+            .Include(stock => stock.Product)
+            .Where(stock => stock.DeletedAt == null && stock.Product.Name.Contains(name))
+            .OrderBy(stock => stock.CreatedAt)
+            .ToList();
+
         public Stock GetById(Guid id) => _context.Stocks
             .Include(stock => stock.Product)
             .Where(stock => stock.DeletedAt == null)
@@ -30,6 +36,7 @@ namespace Supermarket.Core.Repositories
         {
             if (stock.Id == Guid.Empty) stock.Id = Guid.NewGuid();
             stock.CreatedAt = DateTime.Now;
+            stock.SalePrice = stock.PurchasePrice * (1 + (stock.TradeMarkup / 100m));
             _context.Stocks.Add(stock);
             _context.SaveChanges();
             return stock;
@@ -43,7 +50,8 @@ namespace Supermarket.Core.Repositories
             stockToUpdate.SuppliedAt = stock.SuppliedAt;
             stockToUpdate.ExpiresAt = stock.ExpiresAt;
             stockToUpdate.PurchasePrice = stock.PurchasePrice;
-            stockToUpdate.SalePrice = stock.SalePrice;
+            stockToUpdate.TradeMarkup = stock.TradeMarkup;
+            stockToUpdate.SalePrice = stockToUpdate.PurchasePrice * (1 + (stockToUpdate.TradeMarkup / 100m));
             if (_context.Entry(stockToUpdate).State == EntityState.Modified)
                 stockToUpdate.UpdatedAt = DateTime.Now;
             _context.SaveChanges();

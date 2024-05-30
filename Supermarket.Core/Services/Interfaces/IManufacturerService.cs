@@ -8,6 +8,8 @@ namespace Supermarket.Core.Services.Interfaces
     {
         IList<ManufacturerDto> GetAll();
 
+        IList<ManufacturerDto> GetByKey(string key);
+
         ManufacturerDto GetById(Guid id);
 
         ManufacturerDto Add(ManufacturerDto manufacturerDto);

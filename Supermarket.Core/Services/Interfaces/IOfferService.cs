@@ -8,6 +8,8 @@ namespace Supermarket.Core.Services.Interfaces
     {
         IList<OfferDto> GetAll();
 
+        IList<OfferDto> GetByKey(string key);
+
         OfferDto GetById(Guid id);
 
         OfferDto Add(OfferDto offerDto);

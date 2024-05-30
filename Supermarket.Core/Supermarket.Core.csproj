@@ -186,13 +186,17 @@
     </ApplicationDefinition>
     <Compile Include="Behaviors\PasswordBoxBehavior.cs" />
     <Compile Include="Converters\RoleConverter.cs" />
-    <Compile Include="Migrations\202405291257192_V1_CoreDB.cs" />
-    <Compile Include="Migrations\202405291257192_V1_CoreDB.Designer.cs">
-      <DependentUpon>202405291257192_V1_CoreDB.cs</DependentUpon>
+    <Compile Include="Dtos\Response\CategoryValueResponse.cs" />
+    <Compile Include="Migrations\202405291657244_V1_CoreDB.cs" />
+    <Compile Include="Migrations\202405291657244_V1_CoreDB.Designer.cs">
+      <DependentUpon>202405291657244_V1_CoreDB.cs</DependentUpon>
     </Compile>
     <Compile Include="SupermarketView.xaml.cs">
       <DependentUpon>SupermarketView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Categories\CategoriesVM.cs" />
+    <Compile Include="ViewModels\Categories\CategoryDetailsVM.cs" />
+    <Compile Include="ViewModels\Categories\SaveCategoryVM.cs" />
     <Compile Include="ViewModels\Commands\RelayCommand.cs" />
     <Compile Include="Dtos\Common\CategoryDto.cs" />
     <Compile Include="Dtos\Common\ManufacturerDto.cs" />
@@ -252,7 +256,7 @@
     <Compile Include="Services\SoldProductService.cs" />
     <Compile Include="Services\StockService.cs" />
     <Compile Include="Services\UserService.cs" />
-    <Compile Include="ViewModels\AuthVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -268,11 +272,92 @@
     <Compile Include="Entities\SoldProduct.cs" />
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="ViewModels\Manufacturers\ManufacturerDetailsVM.cs" />
+    <Compile Include="ViewModels\Manufacturers\ManufacturersVM.cs" />
+    <Compile Include="ViewModels\Manufacturers\SaveManufacturerVM.cs" />
+    <Compile Include="ViewModels\Offers\OfferDetailsVM.cs" />
+    <Compile Include="ViewModels\Offers\OffersVM.cs" />
+    <Compile Include="ViewModels\Offers\SaveOfferVM.cs" />
+    <Compile Include="ViewModels\Products\ProductDetailsVM.cs" />
+    <Compile Include="ViewModels\Products\ProductsVM.cs" />
+    <Compile Include="ViewModels\Products\SaveProductVM.cs" />
+    <Compile Include="ViewModels\Receipts\ReceiptDetailsVM.cs" />
+    <Compile Include="ViewModels\Receipts\ReceiptsVM.cs" />
+    <Compile Include="ViewModels\Receipts\SaveReceiptVM.cs" />
+    <Compile Include="ViewModels\Stocks\SaveStockVM.cs" />
+    <Compile Include="ViewModels\Stocks\StockDetailsVM.cs" />
+    <Compile Include="ViewModels\Stocks\StocksVM.cs" />
+    <Compile Include="ViewModels\Users\SaveUserVM.cs" />
+    <Compile Include="ViewModels\Users\UserDetailsVM.cs" />
+    <Compile Include="ViewModels\Users\UsersVM.cs" />
     <Compile Include="Views\Auth\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Auth\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Categories\CategoriesView.xaml.cs">
+      <DependentUpon>CategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Categories\CategoryDetailsView.xaml.cs">
+      <DependentUpon>CategoryDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Categories\SaveCategoryView.xaml.cs">
+      <DependentUpon>SaveCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manufacturers\ManufacturerDetailsView.xaml.cs">
+      <DependentUpon>ManufacturerDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manufacturers\ManufacturersView.xaml.cs">
+      <DependentUpon>ManufacturersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manufacturers\SaveManufacturerView.xaml.cs">
+      <DependentUpon>SaveManufacturerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offers\OfferDetailsView.xaml.cs">
+      <DependentUpon>OfferDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offers\OffersView.xaml.cs">
+      <DependentUpon>OffersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offers\SaveOfferView.xaml.cs">
+      <DependentUpon>SaveOfferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductDetailsView.xaml.cs">
+      <DependentUpon>ProductDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\SaveProductView.xaml.cs">
+      <DependentUpon>SaveProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Receipts\ReceiptDetailsView.xaml.cs">
+      <DependentUpon>ReceiptDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Receipts\ReceiptsView.xaml.cs">
+      <DependentUpon>ReceiptsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Receipts\SaveReceiptView.xaml.cs">
+      <DependentUpon>SaveReceiptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\SaveStockView.xaml.cs">
+      <DependentUpon>SaveStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\StockDetailsView.xaml.cs">
+      <DependentUpon>StockDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\StocksView.xaml.cs">
+      <DependentUpon>StocksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\SaveUserView.xaml.cs">
+      <DependentUpon>SaveUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UserDetailsView.xaml.cs">
+      <DependentUpon>UserDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UsersView.xaml.cs">
+      <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -290,8 +375,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405291257192_V1_CoreDB.resx">
-      <DependentUpon>202405291257192_V1_CoreDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405291657244_V1_CoreDB.resx">
+      <DependentUpon>202405291657244_V1_CoreDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -319,10 +404,92 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Categories\CategoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Categories\CategoryDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Categories\SaveCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manufacturers\ManufacturerDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manufacturers\ManufacturersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manufacturers\SaveManufacturerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Offers\OfferDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Offers\OffersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Offers\SaveOfferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Products\ProductDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Products\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Products\SaveProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Receipts\ReceiptDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Receipts\ReceiptsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Receipts\SaveReceiptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stocks\SaveStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stocks\StockDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stocks\StocksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Users\SaveUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Users\UserDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Users\UsersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Users\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

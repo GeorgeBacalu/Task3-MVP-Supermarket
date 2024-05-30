@@ -18,6 +18,8 @@ namespace Supermarket.Core.Services
 
         public IList<ReceiptDto> GetAll() => _receiptRepository.GetAll().ToDtos();
 
+        public IList<ReceiptDto> GetByKey(string key) => _receiptRepository.GetByIssuerNameContains(key).ToDtos();
+
         public ReceiptDto GetById(Guid id) => _receiptRepository.GetById(id).ToDto();
 
         public ReceiptDto Add(ReceiptDto receiptDto) => _receiptRepository.Add(receiptDto.ToEntity(_userRepository, _soldProductRepository)).ToDto();

@@ -1,6 +1,7 @@
 ﻿using Supermarket.Core.Dtos.Common;
 using Supermarket.Core.Entities;
 using Supermarket.Core.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,13 +16,14 @@ namespace Supermarket.Core.Mappings
         public static StockDto ToDto(this Stock stock) => stock == null ? null : new StockDto
         {
             Id = stock.Id,
-            ProductId = stock.Product.Id,
+            ProductId = stock.Product?.Id ?? Guid.Empty,
             Quantity = stock.Quantity,
             MeasureUnit = stock.MeasureUnit,
             SuppliedAt = stock.SuppliedAt,
             ExpiresAt = stock.ExpiresAt,
             PurchasePrice = stock.PurchasePrice,
             SalePrice = stock.SalePrice,
+            TradeMarkup = stock.TradeMarkup,
             CreatedAt = stock.CreatedAt,
             UpdatedAt = stock.UpdatedAt,
             DeletedAt = stock.DeletedAt
@@ -30,13 +32,14 @@ namespace Supermarket.Core.Mappings
         public static Stock ToEntity(this StockDto stockDto, IProductRepository productRepository) => stockDto == null ? null : new Stock
         {
             Id = stockDto.Id,
-            Product = productRepository.GetById(stockDto.ProductId),
+            Product = stockDto.ProductId == Guid.Empty ? null : productRepository.GetById(stockDto.ProductId),
             Quantity = stockDto.Quantity,
             MeasureUnit = stockDto.MeasureUnit,
             SuppliedAt = stockDto.SuppliedAt,
             ExpiresAt = stockDto.ExpiresAt,
             PurchasePrice = stockDto.PurchasePrice,
             SalePrice = stockDto.SalePrice,
+            TradeMarkup = stockDto.TradeMarkup,
             CreatedAt = stockDto.CreatedAt,
             UpdatedAt = stockDto.UpdatedAt,
             DeletedAt = stockDto.DeletedAt

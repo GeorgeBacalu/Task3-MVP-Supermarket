@@ -22,6 +22,14 @@ namespace Supermarket.Core.Repositories
             .OrderBy(product => product.CreatedAt)
             .ToList();
 
+        public IList<Product> GetByNameContains(string name) => _context.Products
+            .Include(product => product.Category)
+            .Include(product => product.Manufacturer)
+            .Include(product => product.Stocks)
+            .Where(product => product.DeletedAt == null && product.Name.Contains(name))
+            .OrderBy(product => product.CreatedAt)
+            .ToList();
+
         public Product GetById(Guid id) => _context.Products
             .Include(product => product.Category)
             .Include(product => product.Manufacturer)

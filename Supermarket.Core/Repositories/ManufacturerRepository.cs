@@ -19,6 +19,11 @@ namespace Supermarket.Core.Repositories
             .OrderBy(manufacturer => manufacturer.CreatedAt)
             .ToList();
 
+        public IList<Manufacturer> GetByNameContains(string name) => _context.Manufacturers
+            .Where(manufacturer => manufacturer.DeletedAt == null && manufacturer.Name.Contains(name))
+            .OrderBy(manufacturer => manufacturer.CreatedAt)
+            .ToList();
+
         public Manufacturer GetById(Guid id) => _context.Manufacturers
             .Where(manufacturer => manufacturer.DeletedAt == null)
             .FirstOrDefault(manufacturer => manufacturer.Id == id)

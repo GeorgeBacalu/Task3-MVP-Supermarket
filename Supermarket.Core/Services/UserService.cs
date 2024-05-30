@@ -19,6 +19,8 @@ namespace Supermarket.Core.Services
 
         public IList<UserDto> GetAll() => _userRepository.GetAll().ToDtos();
 
+        public IList<UserDto> GetByKey(string key) => _userRepository.GetByNameContains(key).ToDtos();
+
         public UserDto GetById(Guid id) => _userRepository.GetById(id).ToDto();
 
         public UserDto Register(RegisterRequest payload)

@@ -15,6 +15,8 @@ namespace Supermarket.Core.Services
 
         public IList<ManufacturerDto> GetAll() => _manufacturerRepository.GetAll().ToDtos();
 
+        public IList<ManufacturerDto> GetByKey(string key) => _manufacturerRepository.GetByNameContains(key).ToDtos();
+
         public ManufacturerDto GetById(Guid id) => _manufacturerRepository.GetById(id).ToDto();
 
         public ManufacturerDto Add(ManufacturerDto manufacturerDto) => _manufacturerRepository.Add(manufacturerDto.ToEntity()).ToDto();

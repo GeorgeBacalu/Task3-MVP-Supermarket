@@ -5,7 +5,7 @@ namespace Supermarket.Core.Views.Auth
 {
     public partial class LoginView : Window
     {
-        public LoginView(AuthVM viewModel)
+        public LoginView(MainVM viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

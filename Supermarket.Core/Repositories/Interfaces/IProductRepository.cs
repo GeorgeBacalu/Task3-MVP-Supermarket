@@ -8,6 +8,8 @@ namespace Supermarket.Core.Repositories.Interfaces
     {
         IList<Product> GetAll();
 
+        IList<Product> GetByNameContains(string name);
+
         Product GetById(Guid id);
 
         Product Add(Product product);
